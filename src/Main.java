@@ -4,6 +4,8 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("Введите выражение для вычисления");
+        System.out.println("Список поддерживаемых символов: 0-9, +, -, *, /, ^, (, )");
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         Converter converter = new Converter();
@@ -30,12 +32,14 @@ public class Main {
     private static boolean validateTheInput(String input) {
         if (input.isEmpty()) {
             System.out.println("Выражение для вычисления не введено.");
+            System.out.println();
             return false;
         }
 
         if (!input.matches("[\\d()*/^+-]+")) {
-            System.out.println("В выражении для вычисления имеется недопустимый символ.");
-            System.out.println("Допустимые символы: 0-9, +, -, *, /, ^, (, )");
+            System.out.println("В выражении для вычисления имеется неподдерживаемый символ.");
+            System.out.println("Список поддерживаемых символов: 0-9, +, -, *, /, ^, (, )");
+            System.out.println();
             return false;
         }
 
@@ -47,6 +51,7 @@ public class Main {
         } while (matcher.find());
         if (!input.matches("[\\d*/^+-]*")) {
             System.out.println("В выражении для вычисления неправильное количество открытых и закрытых скобок.");
+            System.out.println();
             return false;
         }
 
